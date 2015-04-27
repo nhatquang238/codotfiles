@@ -8,7 +8,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+# alias zshconfig="mate~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
@@ -70,6 +70,13 @@ alias rake='noglob rake'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias clr='clear'
 alias ack='ack-grep'
+alias TERM="xterm-16color emacs"
+
+# tmus alias
+alias tma='tmux attach -t'
+alias tmn='tmux new -s'
+alias tml='tmux ls'
+alias tms='tmux switch -t'
 
 # 99 alias
 alias viren='. venv/bin/activate'
@@ -154,5 +161,18 @@ return 1
 # being expanded
 complete -F _apparix_aliases to
 # }}}
+
+# Enable ssh-agent
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+fi
+
+# Fix ForwardAgent for Tmux
+if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
+
+export PYTHONSTARTUP=~/.pyrc;
 
 clr

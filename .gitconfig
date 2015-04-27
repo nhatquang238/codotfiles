@@ -1,0 +1,15 @@
+[user]
+	name = Co
+	email = co@99.co
+[push]
+	default = simple
+[alias]
+	st = status
+	cm = commit -m
+	br = branch
+	co = checkout
+	df = diff
+	lg = log --graph --all --pretty --decorate --oneline
+	fa = fetch --all
+[core]
+	excludesfile = /home/co/.gitignore

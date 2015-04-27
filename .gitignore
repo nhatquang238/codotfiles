@@ -1,0 +1,9 @@
+ENV
+ENV~
+venv*/
+/public/static/robots.txt
+*~
+.#*
+**#*#
+script_data/
+nn-scripts/
