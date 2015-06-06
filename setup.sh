@@ -15,7 +15,7 @@ sudo apt-get update
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
 # install dependencies
-sudo apt-get install emacs24 silversearcher-ag apparix tmux git
+sudo apt-get install emacs24 silversearcher-ag apparix tmux
 
 # initiate emacs config
 git clone git@github.com:nhatquang238/my-sane-emacs.d.git
