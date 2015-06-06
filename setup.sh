@@ -23,7 +23,7 @@ chsh -s /bin/zsh
 git clone git@github.com:nhatquang238/my-sane-emacs.d.git
 
 mv my-sane-emacs.d/ .emacs.d/
-mkdir emacs-packages | cd emacs-packages
+mkdir emacs-packages && cd emacs-packages
 git clone git@github.com:akfish/ac-coffee.git
 
 cd ~
