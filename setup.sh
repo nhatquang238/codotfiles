@@ -7,11 +7,11 @@ cd ~
 # update
 sudo apt-get update
 
-# install oh-my-zsh
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-
 # install dependencies
-sudo apt-get install emacs24 silversearcher-ag apparix tmux zsh
+sudo apt-get install build-essential make curl emacs24 silversearcher-ag apparix tmux zsh
+
+# install oh-my-zsh
+sh -c "$(curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 chsh -s /bin/zsh
 
