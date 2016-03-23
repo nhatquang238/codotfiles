@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
+ZSH_THEME="honukai"
 
 # Example aliases
 # alias zshconfig="mate~/.zshrc"
@@ -174,5 +174,7 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 
 export PYTHONSTARTUP=~/.pyrc;
+
+eval `dircolors $HOME/.dir_colors`
 
 clr

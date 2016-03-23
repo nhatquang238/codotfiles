@@ -13,7 +13,7 @@ sudo apt-get install build-essential make curl emacs24 silversearcher-ag apparix
 # install oh-my-zsh
 sh -c "$(curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-chsh -s /bin/zsh
+# chsh -s /bin/zsh
 
 # initiate emacs config
 git clone git@github.com:nhatquang238/my-sane-emacs.d.git
@@ -28,6 +28,8 @@ cd codotfiles
 for dotfile in `ls .*`; do
     cp $dotfile ~/$dotfile
 done
+
+cp honukai.itermcolors ~/.oh-my-zsh/themes
 
 cd ~
 
