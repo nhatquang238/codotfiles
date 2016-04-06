@@ -29,7 +29,7 @@ for dotfile in `ls .*`; do
     cp $dotfile ~/$dotfile
 done
 
-cp honukai.itermcolors ~/.oh-my-zsh/themes
+cp honukai.zsh-theme ~/.oh-my-zsh/themes
 
 cd ~
 
