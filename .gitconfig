@@ -1,15 +1,20 @@
 [user]
-	name = Co
-	email = co@99.co
+    name = Co
+    email = co@99.co
 [push]
-	default = simple
+    default = simple
 [alias]
-	st = status
-	cm = commit -m
-	br = branch
-	co = checkout
-	df = diff
-	lg = log --graph --all --pretty --decorate --oneline
-	fa = fetch --all
+    st = status
+    cm = commit -m
+    br = branch
+    co = checkout
+    df = diff
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+    fa = fetch --all
 [core]
-	excludesfile = /home/co/.gitignore
+    excludesfile = /home/co/.gitignore
+[github]
+    user = nhatquang238
+[ghi]
+    token = 2894661f8750bb9dda90c530abe3d74de919f545

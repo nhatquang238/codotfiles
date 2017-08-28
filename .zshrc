@@ -45,7 +45,7 @@ ZSH_THEME="honukai"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git jsontools history httpie)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -67,25 +67,30 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias rake='noglob rake'
-alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+# alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias clr='clear'
 alias ack='ack-grep'
 alias TERM="xterm-16color emacs"
+alias rm="echo do not use rm!! use trash-cli instead so you can recover files if you need.; false"
+alias asana='~/.gocode/bin/asana'
 
 # tmus alias
 alias tma='tmux attach -t'
 alias tmn='tmux new -s'
 alias tml='tmux ls'
 alias tms='tmux switch -t'
+alias tmk='tmux kill-session -t'
 
 # 99 alias
 alias viren='. venv/bin/activate'
+alias viren3='. venv3/bin/activate'
 alias 99web='viren; python 99.py'
 alias 99search='viren; python web.py --port=6000 --process=0'
 alias gw='gulp watch'
 alias gwm='gulp watchMinify'
 alias g='gulp'
 alias 99search3='viren; python web.py'
+alias kubectl='/home/co/tmp/kubernetes/platforms/linux/amd64/kubectl'
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
@@ -175,6 +180,23 @@ export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 
 export PYTHONSTARTUP=~/.pyrc;
 
+clr
+
+export GHI_TOKEN="2894661f8750bb9dda90c530abe3d74de919f545"
+alias ghi='TERM=xterm-256color ghi'
+
+export GOPATH=~/.gocode
+export EDITOR=emacs
+
 eval `dircolors $HOME/.dir_colors`
 
-clr
+export NVM_DIR="/home/co/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# enable fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# share history
+setopt share_history

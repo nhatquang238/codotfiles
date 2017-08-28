@@ -1,2 +1,4 @@
 --type-set=jade:ext:jade
 --type-set=styl:ext:styl
+--type-set=kopi:ext:coffee
+--ignore-dir=venv
