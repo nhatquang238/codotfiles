@@ -44,35 +44,21 @@ ZSH_THEME="honukai"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git jsontools history httpie)
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_DIR="$HOME/.nvm"
+
+plugins=(git jsontools history httpie zsh-z zsh-nvm)
+
 source $ZSH/oh-my-zsh.sh
+source ~/codotfiles/machine-check.sh
 
 # User configuration
-
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-alias rake='noglob rake'
-# alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias clr='clear'
-alias ack='ack-grep'
 alias TERM="xterm-16color emacs"
 alias rm="echo do not use rm!! use trash-cli instead so you can recover files if you need.; false"
-alias asana='~/.gocode/bin/asana'
 
 # tmus alias
 alias tma='tmux attach -t'
@@ -84,88 +70,14 @@ alias tmk='tmux kill-session -t'
 # 99 alias
 alias viren='. venv/bin/activate'
 alias viren3='. venv3/bin/activate'
-alias 99web='viren; python 99.py'
-alias 99search='viren; python web.py --port=6000 --process=0'
-alias gw='gulp watch'
-alias gwm='gulp watchMinify'
-alias g='gulp'
-alias 99search3='viren; python web.py'
-alias kubectl='/home/co/tmp/kubernetes/platforms/linux/amd64/kubectl'
 
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+PATH=$PATH:$HOME/.google-cloud-sdk/bin
 
 # enable autocorrectselect 
 setopt correct
 
 # set LANG env variables
 export LANG=en_US.UTF-8
-
-export MONGO_PATH=/usr/local/mongodb
-export PATH=$PATH:$MONGO_PATH/bin
-
-# apparix
-# {{{
-# this is take from the apparix shell-examples for bash so well
-# need bash complete
-autoload bashcompinit
-bashcompinit
-# from apparix shell-examples
-to () {
-if test "$2"; then
-cd "$(apparix "$1" "$2" || echo .)";
-else
-cd "$(apparix "$1" || echo .)";
-fi
-pwd
-}
-bm () {
-if test "$2"; then
-apparix --add-mark "$1" "$2";
-elif test "$1"; then
-apparix --add-mark "$1";
-else
-apparix --add-mark;
-fi
-}
-portal () {
-if test "$1"; then
-apparix --add-portal "$1";
-else
-apparix --add-portal;
-fi
-}
-# function to generate list of completions from .apparixrc
-_apparix_aliases ()
-{   cur=$2
-dir=$3
-COMPREPLY=()
-if [ "$1" == "$3" ]
-then
-COMPREPLY=( $( cat $HOME/.apparix{rc,expand} | \
-grep "j,.*$cur.*," | cut -f2 -d, ) )
-else
-dir=`apparix -favour rOl $dir 2>/dev/null` || return 0
-eval_compreply="COMPREPLY=( $(
-cd "$dir"
-\ls -d *$cur* | while read r
-do
-[[ -d "$r" ]] &&
-[[ $r == *$cur* ]] &&
-echo \"${r// /\\ }\"
-done
-) )"
-eval $eval_compreply
-fi
-return 1
-}
-# zstyle :completion:*:to:* completer _apparix_aliases
-# command to register the above to expand when the tos commands args are
-# being expanded
-complete -F _apparix_aliases to
-# }}}
 
 # Enable ssh-agent
 if [ -z "$SSH_AUTH_SOCK" ] ; then
@@ -177,26 +89,40 @@ if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
-
 export PYTHONSTARTUP=~/.pyrc;
-
-clr
-
-export GHI_TOKEN="2894661f8750bb9dda90c530abe3d74de919f545"
-alias ghi='TERM=xterm-256color ghi'
-
-export GOPATH=~/.gocode
 export EDITOR=emacs
 
-eval `dircolors $HOME/.dir_colors`
+if [ "$MACHINE" = "Linux" ]; then eval `dircolors $HOME/.dir_colors`; fi
 
-export NVM_DIR="/home/co/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Check if 'kubectl' is a command in $PATH
+if [ $commands[kubectl] ]; then
 
-# enable fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  # Placeholder 'kubectl' shell function:
+  # Will only be executed on the first call to 'kubectl'
+  kubectl() {
+
+    # Remove this function, subsequent calls will execute 'kubectl' directly
+    unfunction "$0"
+
+    # Load auto-completion
+    source <(kubectl completion zsh)
+
+    # Execute 'kubectl' binary
+    $0 "$@"
+  }
+fi
+
+# autocomplete gcloud stuff
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi
+
+# make brew work on m1
+if [ $(uname -m) = 'arm64' ]; then eval $(/opt/homebrew/bin/brew shellenv); fi
+
+# pyenv stuff
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # share history
 setopt share_history

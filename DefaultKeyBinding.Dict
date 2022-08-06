@@ -1,0 +1,7 @@
+{
+    "~b" = "moveWordBackward:";
+    "~f" = "moveWordForward:";
+    "^n" = "moveDown:";
+    "^p" = "moveUp:";
+    "~d" = "deleteWordForward:";
+}   
