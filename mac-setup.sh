@@ -40,5 +40,5 @@ echo -n 'Installing kubectl...'
 gcloud components install kubectl
 
 echo -n 'Setting up keybindings...'
-mkdir -p ~/Library/KeyBindings
+[ -d ~/Library/KeyBindings ] || mkdir ~/Library/KeyBindings
 cp ~/codotfiles/DefaultKeyBinding.Dict ~/Library/KeyBindings/DefaultKeyBinding.Dict
