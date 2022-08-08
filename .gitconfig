@@ -13,7 +13,7 @@
     lga = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
     fa = fetch --all
 [core]
-    excludesfile = /home/co/.gitignore
+    excludesfile = ~/.gitignore
 [github]
     user = nhatquang238
 [ghi]
