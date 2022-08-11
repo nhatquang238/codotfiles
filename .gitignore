@@ -10,3 +10,4 @@ nn-scripts/
 **/node_modules/**
 .tern-port
 __pycache__
+*.~undo-tree~
