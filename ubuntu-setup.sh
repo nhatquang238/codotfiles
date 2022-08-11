@@ -13,3 +13,5 @@ sudo apt-get -y install google-cloud-cli google-cloud-cli-gke-gcloud-auth-plugin
 
 echo -n 'Installing kubectl...'
 gcloud components install kubectl
+
+echo 'export EDITOR="emacs"' >> ~/.zshrc

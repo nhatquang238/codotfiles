@@ -23,6 +23,7 @@ make bootstrap -j4
 make install
 mv nextstep/Emacs.app /Applications
 echo 'alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"' >> ~/.zshrc
+echo 'export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"' >> ~/.zshrc
 
 cd ~
 

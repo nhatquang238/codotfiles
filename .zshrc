@@ -90,7 +90,6 @@ if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 export PYTHONSTARTUP=~/.pyrc;
-export EDITOR=emacs
 
 if [ "$MACHINE" = "Linux" ]; then eval `dircolors $HOME/.dir_colors`; fi
 
