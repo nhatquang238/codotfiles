@@ -1,10 +1,11 @@
 #!/bin/bash
 
 echo -n 'Setting up for Ubuntu...'
+sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt-get update
 
 echo -n 'Installing common libs...'
-sudo apt-get -y install build-essential make curl emacs28 silversearcher-ag tmux zsh trash-cli nginx postgresql-13 apt-transport-https ca-certificates gnupg
+sudo apt-get -y install build-essential make curl emacs28 silversearcher-ag tmux zsh trash-cli nginx apt-transport-https ca-certificates gnupg
 
 echo -n 'Installing gcloud...'
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
