@@ -23,5 +23,8 @@ fi
 source $HOME/codotfiles/setup-emacs.sh
 echo -n "brace yourself son! Here come the awesome!"
 
+echo -n 'Making zsh the default shell...'
+chsh -s /bin/zsh
+
 exec zsh
 . ~/.zshrc
